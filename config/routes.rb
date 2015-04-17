@@ -1,6 +1,9 @@
+require 'api_constraints'
+
 NewMarketPlaceApi::Application.routes.draw do
+  devise_for :users
  # Api definition
-  namespace :api, defaults: { format: :json } 
+  namespace :api, defaults: { format: :json }, 
                               constraints: { subdomain: 'api' }, path: '/'  do
     scope module: :v1,
               constraints: ApiConstraints.new(version: 1, default: true) do
@@ -8,4 +11,8 @@ NewMarketPlaceApi::Application.routes.draw do
     end
   end
 end
+
+
+
+
 
